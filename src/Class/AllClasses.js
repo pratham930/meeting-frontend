@@ -1,5 +1,5 @@
 
-import SheduleClass from "../Class/SheduleClass"
+import SheduleClass from "../Class/SheduleClass";
 import { Grid, TextField, Typography, FormControlLabel, Checkbox, Alert,
   InputLabel, MenuItem, Select, FormControl, FormLabel,FormGroup, Stack } from '@mui/material';
 import { Box, Container,Button } from '@mui/material';
@@ -256,5 +256,5 @@ resetForm()
     </>
   )
 }
-
+}
 export default AllClasses;
