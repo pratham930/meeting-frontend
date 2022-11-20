@@ -143,6 +143,26 @@ GetAllMeeting: builder.query({
 
 // createClass
 
+
+
+uploadStudents: builder.mutation({
+  query: ({data,token}) => ({
+ 
+    url:'uploadStudents',
+    method:'POST',
+    body:data,
+    headers: {
+      'authorization': `Bearer ${token}`,
+      },
+    
+    
+    invalidatesTags: ['Class'],
+    
+    
+    })  }),
+
+
+
 createClass: builder.mutation({
   query: ({actualData,token}) => ({
  
@@ -243,6 +263,8 @@ getAllStudentByClassId: builder.query({
 
 }),
 
+
+
 studentLogin: builder.mutation({
   query: (user) => {
  return{
@@ -257,6 +279,20 @@ invalidatesTags: ['Student'],
 
 
 
+
+getStudentIndividualClasses: builder.query({
+  query: (token) => ({
+  
+      url: `getStudentIndividualClasses`,
+      method: 'GET',
+      headers: {
+        'authorization': `Bearer ${token}`,
+        },
+     
+      providesTags: ['Student'],
+})
+
+}),
 
 joinClass: builder.mutation({
   query: ({Data,token}) => {
@@ -353,6 +389,7 @@ useGetAllTeacherQuery,
  
 
 //class
+useUploadStudentsMutation,
 useGetAllClassQuery,
 useGetClassByTeacherQuery,
 useCreateClassMutation,
@@ -362,7 +399,7 @@ useJoinClassMutation,
 useLeftClassMutation,
 useGetAllStudentAddedByTeacherQuery,
 useGetAllStudentByClassIdQuery,
-
+useGetStudentIndividualClassesQuery,
  } = profileApi;
 
 // const fetchMessages = async () => {

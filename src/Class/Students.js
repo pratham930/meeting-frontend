@@ -16,6 +16,7 @@ import { Grid, TextField, Typography, FormControlLabel, Checkbox, Alert,
     useGetAllMeetingQuery,
     useLeftMeetingMutation,
     useJoinMeetingMutation,
+    useUploadStudentsMutation,
     useGetAllStudentAddedByTeacherQuery,
     useGetAllStudentByClassIdQuery,
     useUserProfileQuery} from "../services/profile";
@@ -82,16 +83,12 @@ const openDialog = () => {
 console.log(token)
      const {data:Data} = useGetClassByTeacherQuery(token)
      console.log(Data,'24')
-    // const {data} = useOnlineStudentsQuery(_id)
-// console.log(data,"14")
-
-    // const [join] = useJoinMeetingMutation();
-    // const [leave] = useLeftMeetingMutation();
+   
  
    const {data:userdata} = useUserProfileQuery(token);
    console.log(userdata)
  const {data:AllStudent} =useGetAllStudentAddedByTeacherQuery(token)
-
+const [UploadData] = useUploadStudentsMutation()
  console.log(AllStudent)
 
  const {data:students} = useGetAllStudentByClassIdQuery({_id,token})
@@ -109,38 +106,35 @@ console.log(token)
 console.log(_id,"8")
 
 
-// const handle = async() =>{
-
-
-//     console.log("clicked")
-//     if (token ) {
-//       const data ={_id}
-//         const res = await leave({data,token})
-//         console.log(res)
-//         console.log(res.data.message,"first")
-//     } else {
-//         }}
-
-
-
 
 const handleSubmit = async() =>{
 
 
-console.log("clicked")
-if (_id && token ) {
-    const Data ={_id}
-    // const res = await join({Data,token})
-    // console.log(res)
-    // console.log(res.data.message,"first")
-    // socket.emit("joinChat", _id);
-    // socket.emit("setup", userdata?.user);
-} else {
+  const data = new FormData()
+  data.append('addAttachment', addAttachment)
+data.append("_id",_id)
+
+  if (addAttachment ) {
+    const token = getToken('token')
+    const doc = await UploadData({data,token})
+
     
+    console.log(doc)
+
+    
+ 
+    setError({ status: true, msg: "Resume Uploaded Successfully", type: 'success' })
+ 
+  } else {
+    setError({ status: true, msg: "All Fields are Required", type: 'error' })
+  }
 }
 
 
-}
+
+
+
+
 
   return (
     <div>
@@ -172,42 +166,28 @@ return(
           aria-labelledby="customized-dialog-title"
           open={open}
         >
-        <DialogTitle sx={{ }}>
+        <DialogTitle sx={{p: 2, }}>
 
        
-        <Box sx={{}}>
-<Box display="flex" justifyContent="center" sx={{ backgroundColor: 'error.light', p:1 }}>
-        <Typography variant='p6' component="div" sx={{ fontWeight: 'bold', color: 'white' }}>student Data</Typography>
+        <Box sx={{my:5,p:2}}>
+<Box display="flex" justifyContent="center" sx={{ backgroundColor: 'error.light', my:1 }}>
+        <Typography variant='caption' component="div" sx={{ fontWeight: 'normal', color: 'white' }}>student Data</Typography>
       </Box>
       <Grid container justifyContent="center">
 
-        <Grid item xs={5}>
-          <Box component="form" sx={{ justifyContent:"center" }} noValidate id="resume-form" onSubmit={handleSubmit}>
-            {/* <TextField id="name" name="className" required fullWidth margin='normal' label='className' onChange={(e) => setName(e.target.value)} /> */}
-           
-                                        
+        <Grid item >
+          <Box component="form" sx={{ justifyContent:"center",alignItems:"center" }} noValidate id="resume-form" onSubmit={handleSubmit}>
+            
 
-
-            {/* <FormControl fullWidth margin='normal'>
-        
-              <TextField id="email" startTime="startTime" required fullWidth margin='normal' label='startTime' onChange={(e) => setStartTime(e.target.value)} />
-            </FormControl> */}
-           
-              {/* <FormControl fullWidth margin='normal'>
-       
-              <TextField id="email" endTime="endTime" required fullWidth margin='normal' label='endTime' onChange={(e) => setEndTime(e.target.value)} />
-              </FormControl>
-            */}
-
-                <Stack direction="row" alignItems="center" spacing={20} >
+                <Stack  alignItems="center"  >
               <label htmlFor='profile-photo'>
-                <Input accept="doc/*" id="profile-photo" type="file" onChange={(e) => { setaddAttachment(e.target.files[0]) }} />
+                <Input size ="small" accept="doc/*" id="profile-photo" type="file" onChange={(e) => { setaddAttachment(e.target.files[0]) }} />
                 <Button size='small' variant='contained' component='span'>Upload csv </Button>
               </label>
              
             </Stack>
            
-            <Button size='small' type='submit' variant='contained' sx={{  }} color="error">Submit</Button>
+            <Button  size='small' type='submit' variant='contained' sx={{  }} color="error">Submit</Button>
             {error.status ? <Alert severity={error.type}>{error.msg}</Alert> : ''}
           </Box>
         </Grid>

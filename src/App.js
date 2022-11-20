@@ -14,6 +14,8 @@ import AllClasses from './Class/AllClasses';
 import RegisterTeacher from "./admin/RegisterTeacher";
 import DashBoard from "./admin/DashBoard";
 import Navbar from "./components/Navbar";
+import StudentLogin from './Class/StudentLogin';
+import StudentClass from "./student/StudentClass"
 // const socket = io('http://192.168.1.38:8001');
 
 function App() {
@@ -53,6 +55,10 @@ function App() {
 
 <Route path="/Meeting" element={<Meeting />} />
 <Route path="/Students/:_id" element={<Students/>} />
+<Route path="StudentLogin" element={<StudentLogin/>} />
+<Route path="StudentClass" element={<StudentClass/>} />
+
+
 
 
 
