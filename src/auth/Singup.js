@@ -48,7 +48,7 @@ const Singup = () => {
           if (res.data.status === "teacher login success") {
             storeToken(res.data.token)
             // console.log(res.data.token)
-            navigate('/Meeting')
+            navigate('/AllClasses')
           }
           if (res.data.status === "failed") {
             setError({ status: true, msg: res.data.message, type: 'error' })

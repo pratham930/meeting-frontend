@@ -13,7 +13,7 @@ export const profileApi = createApi({
  
 }),
  
-tagTypes: ['Adress','User','Product','Join'],
+tagTypes: ['Adress','User','Class','Join','Student'],
 
 
 //post request
@@ -61,20 +61,6 @@ invalidatesTags: ['Join'],
 }),
  
 
-LeftMeeting: builder.mutation({
-  query: ({data,token}) => {
- return{
-url:'LeftMeeting',
-method:'PATCH',
-body:data,
-headers: {
-  'authorization': `Bearer ${token}`,
-  },
-
-
-}},
-invalidatesTags: ['Join'],
-}),
 
 
 
@@ -153,6 +139,109 @@ GetAllMeeting: builder.query({
 
 }),
 
+//new colleage
+
+// createClass
+
+createClass: builder.mutation({
+  query: ({data,token}) => ({
+ 
+url:'createClass',
+method:'POST',
+body:data,
+headers: {
+  'authorization': `Bearer ${token}`,
+  },
+
+
+invalidatesTags: ['Student'],
+
+
+})  }),
+
+
+getAllClass: builder.query({
+  query: (token) => ({
+  
+      url: `getAllClass`,
+      method: 'GET',
+      headers: {
+        'authorization': `Bearer ${token}`,
+        },
+     
+      providesTags: ['Class'],
+})
+
+}),
+
+getClassByTeacher: builder.query({
+  query: (token) => ({
+  
+      url: `getClassByTeacher`,
+      method: 'GET',
+      headers: {
+        'authorization': `Bearer ${token}`,
+        },
+     
+      providesTags: ['Class'],
+})
+
+}),
+
+
+
+
+//new Student
+
+
+studentLogin: builder.mutation({
+  query: (user) => {
+ return{
+url:'studentLogin',
+method:'POST',
+body:user,
+headers: {
+  'content-type':"application/json",
+},}},
+invalidatesTags: ['Student'],
+}),
+
+
+
+
+joinClass: builder.mutation({
+  query: ({Data,token}) => {
+   return{
+   url:'joinClass',
+   method:'POST',
+      body:Data,
+      headers: {
+'authorization': `Bearer ${token}`,
+},
+
+
+}},
+invalidatesTags: ['Join'],
+}),
+
+
+leftClass: builder.mutation({
+  query: ({data,token}) => {
+ return{
+url:'leftClass',
+method:'PATCH',
+body:data,
+headers: {
+  'authorization': `Bearer ${token}`,
+  },
+
+
+}},
+invalidatesTags: ['Join'],
+}),
+
+
+
 
 // getMessages: builder.query({
 //   query: (channel) => `messages/${channel}`,
@@ -213,6 +302,16 @@ export const { useLoginProfileMutation,
  useUserProfileQuery,
 useGetAllTeacherQuery,
  
+
+//class
+useGetAllClassQuery,
+useGetClassByTeacherQuery,
+useCreateClassMutation,
+//student
+useStudentLoginMutation,
+useJoinClassMutation,
+useLeftClassMutation,
+
  } = profileApi;
 
 // const fetchMessages = async () => {

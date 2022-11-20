@@ -1,7 +1,10 @@
+
+import SheduleClass from "../Class/SheduleClass"
+
 import { Box, Container,Button } from '@mui/material';
 import React,{useState} from 'react';
 import { getToken } from '../services/localstorage';
-import { useOnlineStudentsQuery, useGetAllMeetingQuery } from "../services/profile";
+import { useOnlineStudentsQuery, useGetAllMeetingQuery ,useGetClassByTeacherQuery} from "../services/profile";
 import { NavLink, useNavigate } from 'react-router-dom';
 import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
@@ -27,8 +30,9 @@ const Meeting = () => {
   const token = getToken('token')
   // const {data} = useOnlineStudentsQuery()
   const { data: Data } = useGetAllMeetingQuery(token)
-
+   const {data} =  useGetClassByTeacherQuery(token)
  
+   console.log(data)
 const [open, setOpen] = useState(false)
   // console.log(data)
   console.log(Data, "9")
@@ -117,6 +121,8 @@ const [open, setOpen] = useState(false)
           open={open}
         >
         <DialogTitle sx={{ m: 0, p: 2 }}>
+
+        <SheduleClass/>
           {'Add Class'}
 
 

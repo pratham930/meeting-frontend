@@ -11,11 +11,7 @@ const CreateMeeting = () => {
         display: 'none',
       });
 
-    const getPjl = (e) => {
-        let data = pjl
-        data.push(e.target.value)
-        setPjl(data)
-      }
+   
     
 
 
@@ -26,9 +22,7 @@ const CreateMeeting = () => {
     const [startTime, setstartTime] = useState()
     const [Subcategory, setSubcategory] = useState()
     const [endTime, setendTime] = useState()
-    const [pjl, setPjl] = useState([])
-    const [pimage, setPimage] = useState('')
-    const [rdoc, setRdoc] = useState('')
+   
     const [error, setError] = useState({
       status: false,
       msg: "",
@@ -42,14 +36,12 @@ const CreateMeeting = () => {
     setCategory('')
     setstartTime('')
     setendTime('')
-    setPjl([])
-    setPimage('')
-    setRdoc('')
+   
     setSubcategory('')
     document.getElementById('resume-form').reset()
 
   }
-
+console.log(name,startTime,endTime,'44')
 
 
 
@@ -60,28 +52,13 @@ const CreateMeeting = () => {
     data.append('name', name)
     data.append('startTime', startTime)
     data.append('endTime', endTime)
-    data.append('Subcategory', Subcategory)
-    data.append('Category', Category)
-    data.append('quantity', quantity)
-    data.append('pjl', pjl)
-    data.append('pimage', pimage)
-    data.append('rdoc', rdoc)
+    // data.append('Subcategory', Subcategory)
+    // data.append('Category', Category)
+    // data.append('quantity', quantity)
+    
 
     if (name && startTime) {
-    //   const token = getToken('token')
-    //   const doc = await saveProfile({data,token})
-
-      
-    //   console.log(doc)
-
-    //   console.log(data.get('name'))
-    //   console.log(data.get('startTime'))
-    //   console.log(data.get('endTime'))
-    //   console.log(data.get('Category'))
-    //   console.log(data.get('quantity'))
-    //   console.log(data.get('pjl'))
-    //   console.log(data.get('pimage'))
-    //   console.log(data.get('rdoc'))
+   
       setError({ status: true, msg: "Resume Uploaded Successfully", type: 'success' })
       resetForm()
     } else {
@@ -103,14 +80,12 @@ const CreateMeeting = () => {
             {/* <TextField id="email" quantity="quantity" required fullWidth margin='normal' label='quantity' onChange={(e) => setquantity(e.target.value)} /> */}
                                         
            
-
+{/* 
               <FormControl fullWidth margin='normal'>
               <InputLabel id="state-select-label">Class</InputLabel>
               <Select labelId='state-select-label' id='state-select' value={Category} label='class' onChange={(e) => { setCategory(e.target.value) }}>
               
-              {/* { Data && Data.categoryList && Data.categoryList.map(({name,_id})=>  
-                <MenuItem key={_id} value={name} >{name}</MenuItem>) 
-                } */}
+           
 
                 <MenuItem value="electronics">8th</MenuItem>
                 <MenuItem value="grocery">9th</MenuItem>
@@ -122,7 +97,7 @@ const CreateMeeting = () => {
 
               </Select>
 
-            </FormControl>
+            </FormControl> */}
 
             {/* <FormControl fullWidth margin='normal'>
               <InputLabel id="state-select-label">SubCategory</InputLabel>

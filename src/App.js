@@ -5,7 +5,8 @@ import { useEffect ,useState} from 'react';
 import { io } from "socket.io-client";
 import {useGetAllUserQuery,} from './services/profile';
 import Meeting from "./Room/Meeting"
-import Singup from "./auth/Singup"
+import Singup from "./auth/Singup";
+import Student from "./Class/Students"
 import { Route, Routes } from "react-router-dom";
 import IndividualRoom from "./Room/IndividualRoom"
 import CreateMeeting from './Room/CreateMeeting';
@@ -13,7 +14,6 @@ import AllClasses from './Class/AllClasses';
 import RegisterTeacher from "./admin/RegisterTeacher";
 import DashBoard from "./admin/DashBoard";
 import Navbar from "./components/Navbar";
-
 // const socket = io('http://192.168.1.38:8001');
 
 function App() {
@@ -52,6 +52,9 @@ function App() {
 <Route path="/RegisterTeacher" element={<RegisterTeacher/>} />
 
 <Route path="/Meeting" element={<Meeting />} />
+<Route path="/Student" element={<Student />} />
+
+
 
 </Routes>
     </div>
