@@ -5,7 +5,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 // Define a service using a base URL and expected endpoints
 export const profileApi = createApi({
   reducerPath: 'profileApi',
-  baseQuery: fetchBaseQuery({ baseUrl: 'http://192.168.1.38:8001/api',
+  baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:8001/api',
   // prepareHeaders(headers) {
   //   return headers;
   // },
