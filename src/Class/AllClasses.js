@@ -18,6 +18,8 @@ import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import { styled } from '@mui/material/styles';
 
+
+
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
 
 
@@ -41,26 +43,23 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
 
 
 const AllClasses = () => {
+
+
+
+ 
   const token = getToken('token')
   // const {data} = useOnlineStudentsQuery()
   const { data: Data } = useGetAllClassQuery(token)
    const {data} =  useGetClassByTeacherQuery(token)
  
-   console.log(data)
+   console.log(data,'49')
 const [open, setOpen] = useState(false)
+
+
   // console.log(data)
   console.log(Data, "9")
 
-  //    const StartTime = () =>{
-
-  // var elemen
-  //     for (let index = 0; index < Data.length; index++) {
-
-  //        elemen = Data[index].startTime;
-  //       console.log(elemen,"19")
-  //     }
-  // return elemen.toDateString()
-  //    }
+  
 
 
   const handleClose = () => {
@@ -75,11 +74,8 @@ const [open, setOpen] = useState(false)
   const [SheduleClass] = useCreateClassMutation()
 
   const [className, setName] = useState()
-  const [quantity, setquantity] = useState()
-  const [Category, setCategory] = useState('')
-  const [startTime, setstartTime] = useState()
-  const [Subcategory, setSubcategory] = useState()
-  const [endTime, setendTime] = useState()
+  const [startTime, setStartTime] = useState()
+  const [endTime, setEndTime] = useState()
  
   const [error, setError] = useState({
     status: false,
@@ -89,13 +85,13 @@ const [open, setOpen] = useState(false)
 
 const resetForm = () => {
   setName('')
-  setquantity('')
+
   // category('')
-  setCategory('')
-  setstartTime('')
-  setendTime('')
+
+  setStartTime('')
+  setEndTime('')
  
-  setSubcategory('')
+
   document.getElementById('resume-form').reset()
 
 }
@@ -107,15 +103,22 @@ console.log(className,startTime,endTime,'44')
 const handleSubmit = async(e) => {
 // navigate('/Meeting')
   e.preventDefault();
-  const data = new FormData()
-  data.append('className', className)
-  data.append('startTime', startTime)
-  data.append('endTime', endTime)
+  
+
+  const actualData = {
+    className,
+    startTime,
+    endTime
+
+  }
+  // data.append('className', className)
+  // data.append('startTime', startTime)
+  // data.append('endTime', endTime)
   
 
   if (className && startTime) {
-const res = await SheduleClass({data,token})
-if (res.data.status=="success") {
+const res = await SheduleClass({actualData,token})
+if (res?.data?.status ==="success") {
 setOpen(false)
 setError({ status: true, msg: "class shedule Successfully", type: 'success' })
 resetForm()
@@ -126,14 +129,13 @@ resetForm()
   }
 }
 
-
+}
 
   return (
     <>
-      {/* <h1> online student: {data?.length}
-  </h1> */}
+   
       <Container>
-
+     
 
         <Box sx={{}}>
 
@@ -198,19 +200,19 @@ resetForm()
 
         <Grid item xs={5}>
           <Box component="form" sx={{ p: 3 }} noValidate id="resume-form" onSubmit={handleSubmit}>
-            <TextField id="name" name="name" required fullWidth margin='normal' label='ClassName' onChange={(e) => setName(e.target.value)} />
-            {/* <TextField id="email" quantity="quantity" required fullWidth margin='normal' label='quantity' onChange={(e) => setquantity(e.target.value)} /> */}
+            <TextField id="name" name="className" required fullWidth margin='normal' label='className' onChange={(e) => setName(e.target.value)} />
+           
                                         
 
 
             <FormControl fullWidth margin='normal'>
-              {/* <FormLabel id="gender-radio">startTime</FormLabel> */}
-              <TextField id="email" startTime="startTime" required fullWidth margin='normal' label='startTime' onChange={(e) => setstartTime(e.target.value)} />
+        
+              <TextField id="email" startTime="startTime" required fullWidth margin='normal' label='startTime' onChange={(e) => setStartTime(e.target.value)} />
             </FormControl>
            
               <FormControl fullWidth margin='normal'>
-            {/* <FormLabel id="gender-radio">endTime</FormLabel> */}
-              <TextField id="email" endTime="endTime" required fullWidth margin='normal' label='endTime' onChange={(e) => setendTime(e.target.value)} />
+       
+              <TextField id="email" endTime="endTime" required fullWidth margin='normal' label='endTime' onChange={(e) => setEndTime(e.target.value)} />
               </FormControl>
            
 
@@ -253,8 +255,12 @@ resetForm()
       </BootstrapDialog>
 
       </Container>
+
+
+
+
+
     </>
-  )
-}
-}
+  )}
+
 export default AllClasses;

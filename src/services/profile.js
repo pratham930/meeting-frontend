@@ -144,17 +144,17 @@ GetAllMeeting: builder.query({
 // createClass
 
 createClass: builder.mutation({
-  query: ({data,token}) => ({
+  query: ({actualData,token}) => ({
  
 url:'createClass',
 method:'POST',
-body:data,
+body:actualData,
 headers: {
   'authorization': `Bearer ${token}`,
   },
 
 
-invalidatesTags: ['Student'],
+invalidatesTags: ['Class'],
 
 
 })  }),
