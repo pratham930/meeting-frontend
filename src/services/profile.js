@@ -194,6 +194,55 @@ getClassByTeacher: builder.query({
 //new Student
 
 
+
+
+
+getClassByTeacher: builder.query({
+  query: (token) => ({
+  
+      url: `getClassByTeacher`,
+      method: 'GET',
+      headers: {
+        'authorization': `Bearer ${token}`,
+        },
+     
+      providesTags: ['Class'],
+})
+
+}),
+
+
+getAllStudentAddedByTeacher: builder.query({
+  query: (token) => ({
+  
+      url: `getClassByTeacher`,
+      method: 'GET',
+      headers: {
+        'authorization': `Bearer ${token}`,
+        },
+     
+      providesTags: ['Class'],
+})
+
+}),
+
+
+
+
+getAllStudentByClassId: builder.query({
+  query: ({_id,token}) => ({
+  
+      url: `getAllStudentByClassId/${_id}`,
+      method: 'GET',
+      headers: {
+        'authorization': `Bearer ${token}`,
+        },
+     
+      providesTags: ['Student'],
+})
+
+}),
+
 studentLogin: builder.mutation({
   query: (user) => {
  return{
@@ -311,6 +360,8 @@ useCreateClassMutation,
 useStudentLoginMutation,
 useJoinClassMutation,
 useLeftClassMutation,
+useGetAllStudentAddedByTeacherQuery,
+useGetAllStudentByClassIdQuery,
 
  } = profileApi;
 

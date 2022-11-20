@@ -1,5 +1,8 @@
 import React,{useEffect} from 'react';
 import { Box ,Button} from '@mui/material';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemText from '@mui/material/ListItemText';
 // import {useJoinMeetingMutation,} from "../services/profile"
 import {getToken} from '../services/localstorage';
 import { useParams } from 'react-router-dom';
@@ -9,7 +12,10 @@ import {useOnlineStudentsQuery,
   useGetClassByTeacherQuery,
   useGetAllMeetingQuery,
   useLeftMeetingMutation,
-  useJoinMeetingMutation,useUserProfileQuery} from "../services/profile";
+  useJoinMeetingMutation,
+  useGetAllStudentAddedByTeacherQuery,
+  useGetAllStudentByClassIdQuery,
+  useUserProfileQuery} from "../services/profile";
 const socket = {};
 
 const Student = () => {
@@ -31,7 +37,13 @@ console.log(token)
  
    const {data:userdata} = useUserProfileQuery(token);
    console.log(userdata)
+ const {data:AllStudent} =useGetAllStudentAddedByTeacherQuery(token)
 
+ console.log(AllStudent)
+
+ const {data:students} = useGetAllStudentByClassIdQuery({_id,token})
+
+ console.log(students,'43')
     // useEffect(() => {
     //   socket.on("connect", () => {
     //     console.log(socket.id);
@@ -81,6 +93,23 @@ console.log(_id,"8")
     <div>
 
 students
+
+
+{ students?.map(({studentName,_id,createdAt})=>{
+return(
+    <List key={_id} sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
+    <ListItem>
+     
+      <ListItemText primary={studentName} secondary={new Date(createdAt)?.toDateString()} />
+    </ListItem>
+  
+    
+  </List>)
+
+   })
+       
+}
+
 {/* <Button onClick={()=> handleSubmit() }>
 
 Join this Meeting

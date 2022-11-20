@@ -6,7 +6,7 @@ import { io } from "socket.io-client";
 import {useGetAllUserQuery,} from './services/profile';
 import Meeting from "./Room/Meeting"
 import Singup from "./auth/Singup";
-import Student from "./Class/Students"
+import Students from "./Class/Students"
 import { Route, Routes } from "react-router-dom";
 import IndividualRoom from "./Room/IndividualRoom"
 import CreateMeeting from './Room/CreateMeeting';
@@ -52,7 +52,7 @@ function App() {
 <Route path="/RegisterTeacher" element={<RegisterTeacher/>} />
 
 <Route path="/Meeting" element={<Meeting />} />
-<Route path="/Student" element={<Student />} />
+<Route path="/Students/:_id" element={<Students/>} />
 
 
 
