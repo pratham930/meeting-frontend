@@ -165,8 +165,8 @@ resetForm()
  <Box sx={{display:"flex",justifyContent:"center",spacing:"2"}}>
         <NavLink style={{ listStyle:"none" ,textDecoration:"none"}} to='/CreateMeeting'>
         <Box>
-        <Button variant="contained">shedule An new meeting
-        </Button>
+        {/* <Button variant="contained">shedule An new meeting
+        </Button> */}
          
         </Box>
 
@@ -174,8 +174,8 @@ resetForm()
 
         <NavLink style={{ listStyle:"none" ,textDecoration:"none"}} to='/AllClasses'>
         <Box>
-        <Button  variant="outlined">View StudentsBy class
-        </Button>
+        {/* <Button  variant="outlined">View StudentsBy class
+        </Button> */}
          
         </Box>
 

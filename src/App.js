@@ -15,7 +15,9 @@ import RegisterTeacher from "./admin/RegisterTeacher";
 import DashBoard from "./admin/DashBoard";
 import Navbar from "./components/Navbar";
 import StudentLogin from './Class/StudentLogin';
-import StudentClass from "./student/StudentClass"
+import StudentClass from "./student/StudentClass";
+
+import  LiveClass from "./student/LiveClass"
 // const socket = io('http://192.168.1.38:8001');
 
 function App() {
@@ -57,6 +59,7 @@ function App() {
 <Route path="/Students/:_id" element={<Students/>} />
 <Route path="StudentLogin" element={<StudentLogin/>} />
 <Route path="StudentClass" element={<StudentClass/>} />
+<Route path="/LiveClass/:_id" element={<LiveClass/>} />
 
 
 
