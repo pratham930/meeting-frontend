@@ -16,6 +16,7 @@ import DashBoard from "./admin/DashBoard";
 import Navbar from "./components/Navbar";
 import StudentLogin from './Class/StudentLogin';
 import StudentClass from "./student/StudentClass";
+import 'bulma/css/bulma.min.css';
 
 import  LiveClass from "./student/LiveClass"
 // const socket = io('http://192.168.1.38:8001');
